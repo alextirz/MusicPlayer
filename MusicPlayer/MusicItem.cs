@@ -156,7 +156,9 @@ namespace MusicPlayer
 
         private void display_Tick(object sender, EventArgs e)
         {
+            int highLimit = Convert.ToInt32(image.Bottom - playButton.Height * 0.25);
 
+            int lowLimit = Convert.ToInt32(image.Bottom - playButton.Height * 0.5);
 
             if (ButtonVisible)
             {
@@ -164,14 +166,14 @@ namespace MusicPlayer
                 {
                     playButton.Visible = true;
                 }
-                if (playButton.Top > 260)
+                if (playButton.Top > lowLimit)
                 {
                     playButton.Top--;
                 }
             }
             else
             {
-                if (playButton.Top < 280)
+                if (playButton.Top < highLimit)
                 {
                     playButton.Top++;
                 }
@@ -180,9 +182,6 @@ namespace MusicPlayer
                     playButton.Visible = false;
                 }
             }
-
         }
-
-
     }
 }
