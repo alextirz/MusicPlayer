@@ -16,6 +16,7 @@ namespace MusicPlayer
         public CustomButton()
         {
             InitializeComponent();
+            button.Margin = new Padding(7);
             RecursiveHandlerHover(buttonArea);
             RecursiveHandlerClick(buttonArea);
         }
