@@ -28,8 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+           // System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             musicArea = new FlowLayoutPanel();
-            trackBar1 = new TrackBar();
+            trackBar1 = new MusicTrackBar();
             playListArea = new FlowLayoutPanel();
             SuspendLayout();
             // 
@@ -83,7 +84,7 @@
         #endregion
 
         private FlowLayoutPanel musicArea;
-        private TrackBar trackBar1;
+        private MusicTrackBar trackBar1;
         private FlowLayoutPanel playListArea;
     }
 }

@@ -1,3 +1,4 @@
+using NAudio.Gui;
 using System.Diagnostics.Eventing.Reader;
 
 namespace MusicPlayer
@@ -7,7 +8,8 @@ namespace MusicPlayer
         public Form1()
         {
             InitializeComponent();
-            TrackBar trackBar = new TrackBar();
+            Icon = Properties.Resources.icon;
+            MusicTrackBar trackBar = new MusicTrackBar();
             trackBar.Dock = DockStyle.Bottom;
             trackBar1.PlayPause += TrackBar1_PlayPause;
             trackBar1.PlayNext += TrackBar1_PlayNext;
