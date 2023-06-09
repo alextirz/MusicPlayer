@@ -30,13 +30,13 @@
         {
             components = new System.ComponentModel.Container();
             itemArea = new TableLayoutPanel();
-            image = new PictureBox();
+            albumImage = new PictureBox();
             title = new Label();
             description = new Label();
             playButton = new CustomButton();
             display = new System.Windows.Forms.Timer(components);
             itemArea.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)image).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)albumImage).BeginInit();
             SuspendLayout();
             // 
             // itemArea
@@ -44,32 +44,31 @@
             itemArea.BackColor = Color.DarkSlateGray;
             itemArea.ColumnCount = 1;
             itemArea.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            itemArea.Controls.Add(image, 0, 0);
+            itemArea.Controls.Add(albumImage, 0, 0);
             itemArea.Controls.Add(title, 0, 1);
             itemArea.Controls.Add(description, 0, 2);
             itemArea.Dock = DockStyle.Fill;
             itemArea.Location = new Point(0, 0);
-            itemArea.Margin = new Padding(4, 5, 4, 5);
             itemArea.Name = "itemArea";
-            itemArea.Padding = new Padding(29, 33, 29, 33);
+            itemArea.Padding = new Padding(15);
             itemArea.RowCount = 3;
             itemArea.RowStyles.Add(new RowStyle(SizeType.Percent, 70F));
             itemArea.RowStyles.Add(new RowStyle(SizeType.Percent, 15F));
             itemArea.RowStyles.Add(new RowStyle(SizeType.Percent, 15F));
-            itemArea.Size = new Size(344, 475);
+            itemArea.Size = new Size(241, 285);
             itemArea.TabIndex = 1;
             // 
-            // image
+            // albumImage
             // 
-            image.Dock = DockStyle.Fill;
-            image.Image = Properties.Resources.kimetsu_no_yaiba_11;
-            image.Location = new Point(29, 33);
-            image.Margin = new Padding(0);
-            image.Name = "image";
-            image.Size = new Size(286, 286);
-            image.SizeMode = PictureBoxSizeMode.Zoom;
-            image.TabIndex = 0;
-            image.TabStop = false;
+            albumImage.Dock = DockStyle.Fill;
+            albumImage.Image = Properties.Resources.kimetsu_no_yaiba_11;
+            albumImage.Location = new Point(15, 15);
+            albumImage.Margin = new Padding(0);
+            albumImage.Name = "albumImage";
+            albumImage.Size = new Size(211, 178);
+            albumImage.SizeMode = PictureBoxSizeMode.Zoom;
+            albumImage.TabIndex = 0;
+            albumImage.TabStop = false;
             // 
             // title
             // 
@@ -77,10 +76,10 @@
             title.Dock = DockStyle.Fill;
             title.Font = new Font("Comic Sans MS", 10F, FontStyle.Bold, GraphicsUnit.Point);
             title.ForeColor = Color.WhiteSmoke;
-            title.Location = new Point(33, 319);
-            title.Margin = new Padding(4, 0, 4, 0);
+            title.Location = new Point(18, 201);
+            title.Margin = new Padding(3, 8, 3, 0);
             title.Name = "title";
-            title.Size = new Size(278, 61);
+            title.Size = new Size(205, 30);
             title.TabIndex = 1;
             title.Text = "title";
             title.TextAlign = ContentAlignment.MiddleLeft;
@@ -91,10 +90,9 @@
             description.Dock = DockStyle.Fill;
             description.Font = new Font("Comic Sans MS", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             description.ForeColor = SystemColors.ControlLight;
-            description.Location = new Point(33, 380);
-            description.Margin = new Padding(4, 0, 4, 0);
+            description.Location = new Point(18, 231);
             description.Name = "description";
-            description.Size = new Size(278, 62);
+            description.Size = new Size(205, 39);
             description.TabIndex = 2;
             description.Text = "description";
             description.TextAlign = ContentAlignment.MiddleLeft;
@@ -104,9 +102,10 @@
             playButton.BackColor = Color.Teal;
             playButton.ButtonImage = null;
             playButton.ForeColor = SystemColors.ControlText;
-            playButton.Location = new Point(250, 260);
+            playButton.Location = new Point(175, 156);
+            playButton.Margin = new Padding(1);
             playButton.Name = "playButton";
-            playButton.Size = new Size(75, 75);
+            playButton.Size = new Size(52, 45);
             playButton.TabIndex = 2;
             playButton.Visible = false;
             // 
@@ -118,24 +117,23 @@
             // 
             // MusicItem
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Transparent;
             Controls.Add(playButton);
             Controls.Add(itemArea);
-            Margin = new Padding(4, 5, 4, 5);
             Name = "MusicItem";
-            Size = new Size(344, 475);
+            Size = new Size(241, 285);
             itemArea.ResumeLayout(false);
             itemArea.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)image).EndInit();
+            ((System.ComponentModel.ISupportInitialize)albumImage).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
         private TableLayoutPanel itemArea;
-        private PictureBox image;
+        private PictureBox albumImage;
         private Label title;
         private Label description;
         private CustomButton playButton;

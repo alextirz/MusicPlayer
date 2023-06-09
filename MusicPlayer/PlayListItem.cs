@@ -94,6 +94,7 @@ namespace MusicPlayer
 
         public Image ImageCover
         {
+            get { return pictureBox1.Image; }
             set {  pictureBox1.Image = value; }
         }
         #endregion

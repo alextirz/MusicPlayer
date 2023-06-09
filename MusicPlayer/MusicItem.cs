@@ -143,22 +143,18 @@ namespace MusicPlayer
             get { return filePath; }
             set { filePath = value; }
         }
-
-        public void SetMusicItemImage(string path)
+        public Image TrackImage
         {
-            string imagePath = path;
-            if (imagePath == "default")
-                image.Image = Properties.Resources._default;
-            else
-                image.Image = Image.FromFile(imagePath);
+            get => albumImage.Image;
+            set => albumImage.Image = value;
         }
         #endregion
 
         private void display_Tick(object sender, EventArgs e)
         {
-            int highLimit = Convert.ToInt32(image.Bottom - playButton.Height * 0.25);
+            int lowLimit = Convert.ToInt32(albumImage.Bottom - playButton.Height * 0.65);
 
-            int lowLimit = Convert.ToInt32(image.Bottom - playButton.Height * 0.5);
+            int highLimit = Convert.ToInt32(albumImage.Bottom - playButton.Height * 0.85);
 
             if (ButtonVisible)
             {
@@ -166,14 +162,14 @@ namespace MusicPlayer
                 {
                     playButton.Visible = true;
                 }
-                if (playButton.Top > lowLimit)
+                if (playButton.Top > highLimit)
                 {
                     playButton.Top--;
                 }
             }
             else
             {
-                if (playButton.Top < highLimit)
+                if (playButton.Top < lowLimit)
                 {
                     playButton.Top++;
                 }

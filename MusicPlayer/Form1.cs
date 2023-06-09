@@ -67,8 +67,13 @@ namespace MusicPlayer
                 playListArea.Controls.Add(playListItem);
                 playListItem.FilePath = dirInfo.FullName;
 
-                Image playlistImage = Image.FromFile(imagePaths[0]);
-                playListItem.ImageCover = playlistImage;
+                if (imagePaths.Length > 0)
+                {
+                    Image playlistImage = Image.FromFile(imagePaths[0]);
+                    playListItem.ImageCover = playlistImage;
+                }
+                else playListItem.ImageCover = Properties.Resources._default;
+
                 playListItem.PlayListItemChanged += PlayListItem_PlayListItemChanged;
             }
 
@@ -99,23 +104,14 @@ namespace MusicPlayer
             {
                 FileInfo file = new FileInfo(musicTrack);
                 MusicItem newtrack = new MusicItem();
-                newtrack.Description = file.Name.Replace(".mp3", "");
+                newtrack.Title = file.Name.Replace(".mp3", "");
                 var currentDir = Directory.GetParent(file.FullName);
-                newtrack.Title = currentDir.Name;
+                newtrack.Description = playlist.Title;
                 newtrack.FilePath = file.FullName;
                 newtrack.MusicPlay += Newtrack_MusicPlay;
                 newtrack.MusicHover += Newtrack_MusicHover;
                 musicArea.Controls.Add(newtrack);
-
-                if (imageFiles.Count() == 0)
-                {
-                    newtrack.SetMusicItemImage("default");
-                }
-                else
-                {
-                    FileInfo imagePath = new FileInfo(imageFiles[0]);
-                    newtrack.SetMusicItemImage(imagePath.ToString());
-                }
+                newtrack.TrackImage = playlist.ImageCover;
             }
 
         }
