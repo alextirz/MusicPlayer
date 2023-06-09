@@ -74,7 +74,7 @@
             // 
             title.AutoSize = true;
             title.Dock = DockStyle.Fill;
-            title.Font = new Font("Comic Sans MS", 10F, FontStyle.Bold, GraphicsUnit.Point);
+            title.Font = new Font("Comic Sans MS", 8.5F, FontStyle.Bold, GraphicsUnit.Point);
             title.ForeColor = Color.WhiteSmoke;
             title.Location = new Point(18, 201);
             title.Margin = new Padding(3, 8, 3, 0);
@@ -88,7 +88,7 @@
             // 
             description.AutoSize = true;
             description.Dock = DockStyle.Fill;
-            description.Font = new Font("Comic Sans MS", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            description.Font = new Font("Comic Sans MS", 10F, FontStyle.Regular, GraphicsUnit.Point);
             description.ForeColor = SystemColors.ControlLight;
             description.Location = new Point(18, 231);
             description.Name = "description";

@@ -1,19 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Resources;
-using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using NAudio.Wave;
+﻿using NAudio.Wave;
 
 namespace MusicPlayer
 {
-    public partial class TrackBar : UserControl
+    public partial class MusicTrackBar : UserControl
     {
         IWavePlayer _wavePlayer;
         AudioFileReader _audioFileReader;
@@ -22,7 +11,7 @@ namespace MusicPlayer
         public event EventHandler PlayPrevious;
         bool isPlaying;
 
-        public TrackBar()
+        public MusicTrackBar()
         {
             InitializeComponent();
             buttonPlayPause.CustomClick += ButtonPlayPause_CustomClick;
@@ -79,33 +68,25 @@ namespace MusicPlayer
         }
         private void ButtonVolumeUp_CustomClick(object? sender, EventArgs e)
         {
-            float change = 0.2f;
             if (_wavePlayer is null)
             {
                 ShowMessage();
             }
-            else if (_wavePlayer.Volume + change > 1)
-            {
-                _wavePlayer.Volume = 1;
-            }
             else
-                _wavePlayer.Volume = _wavePlayer.Volume + change;
+            {
+                _wavePlayer.Volume = trackBar1.Value / 100f;
+            }
         }
 
         private void ButtonVolumeDown_CustomClick(object? sender, EventArgs e)
         {
-            float change = 0.2f;
             if (_wavePlayer is null)
             {
                 ShowMessage();
             }
-            else if ((_wavePlayer.Volume - change < 0))
-            {
-                _wavePlayer.Volume = 0;
-            }
             else
             {
-                _wavePlayer.Volume = _wavePlayer.Volume - change;
+                _wavePlayer.Volume = 0;
             }
         }
 
@@ -114,30 +95,27 @@ namespace MusicPlayer
         {
             if (_wavePlayer != null)
             {
-                //_wavePlayer.Dispose();
-                //_audioFileReader.Dispose();
                 _wavePlayer.Stop();
                 audioTime.Stop();
                 isPlaying = false;
             }
             _wavePlayer = new WaveOut();
 
-            label1.Text = path;
             _audioFileReader = new AudioFileReader(path);
             _wavePlayer.Init(_audioFileReader);
             _wavePlayer.Play();
             isPlaying = true;
-            _wavePlayer.Volume = 0.5f;
+            _wavePlayer.Volume = trackBar1.Value / 100f;
             buttonPlayPause.ButtonImage = Properties.Resources.pause;
             audioTime.Start();
         }
+
+
 
         private void audioTime_Tick(object sender, EventArgs e)
         {
             double timePercent = (_audioFileReader.CurrentTime
                 / _audioFileReader.TotalTime) * 100;
-            label1.Text = _audioFileReader.CurrentTime
-                + "/" + _audioFileReader.TotalTime;
 
             progress.ColumnStyles[0].Width = (int)timePercent;
             progress.ColumnStyles[1].Width = 100 - (int)timePercent;
@@ -153,6 +131,14 @@ namespace MusicPlayer
         private void ShowMessage()
         {
             MessageBox.Show("Select a song!");
+        }
+
+        private void trackBar1_Scroll(object sender, EventArgs e)
+        {
+            if (sender is TrackBar volumeBar && _wavePlayer != null)
+            {
+                _wavePlayer.Volume = volumeBar.Value / 100f;
+            }
         }
     }
 }
